@@ -11,7 +11,7 @@ metadata:
     support: https://github.com/konveyor/forklift-operator/issues
     repository: https://github.com/konveyor/forklift-operator
     certified: "false"
-    containerImage: quay.io/konveyor/forklift-operator:latest
+    containerImage: quay.io/mnecas0/forklift-operator:latest
     createdAt: 2022-07-08T17:51:11Z
     olm.skipRange: '>=0.0.0 <99.0.0'
     operatorframework.io/initialization-resource: |-
@@ -299,7 +299,7 @@ spec:
                 - name: ANSIBLE_GATHERING
                   value: explicit
                 - name: CONTROLLER_IMAGE
-                  value: quay.io/konveyor/forklift-controller:latest
+                  value: quay.io/mnecas0/forklift-controller:latest
                 - name: MUST_GATHER_IMAGE
                   value: quay.io/konveyor/forklift-must-gather:latest
                 - name: MUST_GATHER_API_IMAGE
@@ -322,7 +322,7 @@ spec:
                     port: 6789
                   initialDelaySeconds: 5
                   periodSeconds: 10
-                image: quay.io/konveyor/forklift-operator:latest
+                image: quay.io/mnecas0/forklift-operator:latest
                 imagePullPolicy: Always
                 name: forklift-operator
                 resources: {}
@@ -424,6 +424,18 @@ spec:
           - forkliftcontrollers
           - forkliftcontrollers/status
           - forkliftcontrollers/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - admissionregistration.k8s.io
+          resources:
+          - validatingwebhookconfigurations
           verbs:
           - create
           - delete
@@ -562,7 +574,7 @@ spec:
     url: https://github.com/konveyor/forklift-operator
   relatedImages:
   - name: controller
-    image: quay.io/konveyor/forklift-controller:latest
+    image: quay.io/mnecas0/forklift-controller:latest
   - name: must-gather
     image: quay.io/konveyor/forklift-must-gather:latest
   - name: must-gather-api
